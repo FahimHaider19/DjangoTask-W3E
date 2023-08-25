@@ -1,0 +1,47 @@
+<!-- djangotemplates/example/templates/base.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Django Sample Site - {% block title %}{% endblock %}
+    </title>
+
+    <script src="{% static 'script.js' %}"></script> <!-- This is how to include a static file -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% comment %} <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" /> {% endcomment %}
+  </head>
+  <body>
+    <div class="container">
+        {% comment %} {% block pagecontent %}
+        {% endblock %} {% endcomment %}
+
+        {% block content %}
+        <div class="bg-white">
+        <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+            <h2 id="products-heading" class="sr-only">
+            Products
+            </h2>
+
+            <div class="grid grid-cols-1 gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mx-12 sm:mx-0">
+            {% for product in products %}
+            <a href="{{ product.name }}" class="group">
+                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg">
+                    <img src="{{ product.titleimage.url }}" class="w-full object-cover object-center group-hover:opacity-75 h-96" />
+                </div>
+                <div class="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.price }}$</p>
+                </div>
+                {% comment %} <p class="mt-1 text-sm italic text-gray-500">{{ product.description }}</p> {% endcomment %}
+            </a>
+            {% endfor %}
+            </div>
+        </div>
+        </div>
+        {% endblock %}
+    </div>
+  </body>
+</html>

@@ -10,10 +10,17 @@ class views:
     def home(request):
         return HttpResponse("Hello World")
     
-    def product(request, id):
+    def product(request, name):
         try:
-            product = Product.objects.get(pk=id)
-            return HttpResponse(product)
+            product = Product.objects.get(name=name)
+            reviews = [{
+                    'user': review.user,
+                    'text': review.text,
+                    'rating': review.rating
+                } for review in product.reviews.all()]
+            
+            print(reviews, product)
+            return render(request, 'product.html', { 'product': product, 'reviews': reviews })
         except Product.DoesNotExist:
             raise Http404("Product does not exist")
     
@@ -27,5 +34,11 @@ class views:
             'image': product.image,
             'titleimage': product.titleimage,
         } for product in Product.objects.all()]
-
-        return HttpResponse(products)
+        print(products)
+        return render(request, 'products.html', {'products': products})
+    
+    def addReview(request, name):
+        if request.method == 'POST':
+            product = Product.objects.get(name=name)
+            product.reviews.create(user=request.POST['user'], text=request.POST['review'], rating=request.POST['rating'])
+            return HttpResponse("Review added")
