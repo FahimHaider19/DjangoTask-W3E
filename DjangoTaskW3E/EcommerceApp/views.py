@@ -1,5 +1,5 @@
 from django.http import Http404, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from .models import Product
 
@@ -8,7 +8,7 @@ from .models import Product
 class views:
 
     def home(request):
-        return HttpResponse("Hello World")
+        return redirect("/product")
     
     def product(request, name):
         
@@ -37,19 +37,6 @@ class views:
             products = Product.objects.all()
         else:
             products = Product.objects.all()
-
-        # product_list = [
-        #     {
-        #         'name': product.name,
-        #         'price': product.price,
-        #         'description': product.description,
-        #         'publisher': product.publisher,
-        #         'developer': product.developer,
-        #         'image': product.image,
-        #         'titleimage': product.titleimage,
-        #     }
-        #     for product in products
-        # ]
         return render(request, 'products.html', {'products': products, 'msg': msg})
     
     def addReview(request, name):
