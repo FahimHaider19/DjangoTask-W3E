@@ -28,7 +28,7 @@ This project is an E-commerce product catalog that allows users to browse and se
 
    ```
    git clone https://github.com/FahimHaider19/DjangoTask-W3E
-   cd DjangoTaskW3E
+   cd DjangoTask-W3E
    ```
 
 2. Create a virtual environment and activate it:
@@ -44,7 +44,7 @@ This project is an E-commerce product catalog that allows users to browse and se
    pip install -r requirements.txt
    ```
 
-4. Rename the `.env.example` file to `.env` and update the environment variables:
+4. Create `.env` update the environment variables:
 
    ```
    DBNAME=DjangoTaskW3E
@@ -52,6 +52,12 @@ This project is an E-commerce product catalog that allows users to browse and se
    DBPASSWORD=strong-password
    DBHOST=localhost
    DBPORT=5432
+   ```
+
+5. Change Directory and Navigate to Project
+
+   ```
+   cd DjangoTaskW3E
    ```
 
 5. Run migrations:

@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tailwind',
     'EcommerceApp',
 ]
 
@@ -79,11 +82,11 @@ WSGI_APPLICATION = 'DjangoTaskW3E.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DjangoTaskW3E',
-        'USER': 'user-name',
-        'PASSWORD': 'strong-password',
-        'HOST': 'localhost',
-        'PORT': '5432', 
+        'NAME': env('DBNAME'),
+        'USER': env('DBUSER'),
+        'PASSWORD': env('DBPASSWORD'),
+        'HOST': env('DBHOST'),
+        'PORT': env('DBPORT'), 
     }
 }
 

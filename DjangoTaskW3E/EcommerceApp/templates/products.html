@@ -13,14 +13,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     {% comment %} <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css" /> {% endcomment %}
   </head>
-  <body>
+  <body class="grid place-items-center">
+    {% include './navbar.html' %}
+    {% include './errorbanner.html' %}
     <div class="container">
         {% comment %} {% block pagecontent %}
         {% endblock %} {% endcomment %}
 
         {% block content %}
         <div class="bg-white">
-        <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="mx-auto max-w-2xl pt-10 pb-16 px-4 sm:pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
             <h2 id="products-heading" class="sr-only">
             Products
             </h2>
